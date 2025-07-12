@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akash 💚 Kanmani - Our Love Story</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Playfair+Display:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            overflow: hidden;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        /* Surprise Screen */
+        .surprise-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 1;
+            visibility: visible;
+            transition: all 0.8s ease;
+        }
+
+        .surprise-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .surprise-content {
+            text-align: center;
+            color: white;
+            position: relative;
+            z-index: 2;
+        }
+
+        .heart-animation {
+            margin-bottom: 2rem;
+            position: relative;
+            height: 100px;
+        }
+
+        .heart {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 45px;
+            background: #ff6b9d;
+            transform-origin: center bottom;
+            animation: heartbeat 1.5s ease-in-out infinite;
+        }
+
+        .heart:nth-child(2) {
+            animation-delay: 0.3s;
+            background: #ff8fab;
+            width: 40px;
+            height: 36px;
+        }
+
+        .heart:nth-child(3) {
+            animation-delay: 0.6s;
+            background: #ffb3c6;
+            width: 30px;
+            height: 27px;
+        }
+
+        .heart:before,
+        .heart:after {
+            content: '';
+            width: 26px;
+            height: 40px;
+            position: absolute;
+            left: 25px;
+            top: 0;
+            background: inherit;
+            border-radius: 25px 25px 0 0;
+            transform: rotate(-45deg);
+            transform-origin: 0 100%;
+        }
+
+        .heart:after {
+            left: 0;
+            transform: rotate(45deg);
+            transform-origin: 100% 100%;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: translateX(-50%) scale(1); }
+            50% { transform: translateX(-50%) scale(1.2); }
+        }
+
+        .surprise-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .surprise-message {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .surprise-btn {
+            position: relative;
+            background: linear-gradient(45deg, #ff6b9d, #c44569);
+            color: white;
+            border: none;
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(255, 107, 157, 0.4);
+        }
+
+        .surprise-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(255, 107, 157, 0.6);
+        }
+
+        .floating-hearts {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .floating-heart {
+            position: absolute;
+            font-size: 2rem;
+            animation: floatUp 6s linear infinite;
+            opacity: 0.7;
+        }
+
+        .floating-heart:nth-child(1) { left: 10%; animation-delay: 0s; }
+        .floating-heart:nth-child(2) { left: 20%; animation-delay: 1s; }
+        .floating-heart:nth-child(3) { left: 70%; animation-delay: 2s; }
+        .floating-heart:nth-child(4) { left: 80%; animation-delay: 3s; }
+        .floating-heart:nth-child(5) { left: 90%; animation-delay: 4s; }
+
+        @keyframes floatUp {
+            0% {
+                bottom: -10%;
+                transform: translateX(0px) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.7;
+            }
+            90% {
+                opacity: 0.7;
+            }
+            100% {
+                bottom: 110%;
+                transform: translateX(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Main Album */
+        .main-album {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 1s ease;
+        }
+
+        .main-album.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Album Pages */
+        .album-page {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateX(100px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .album-page.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(0);
+        }
+
+        /* Cover Page */
+        .cover-page {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cover-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            z-index: 2;
+            position: relative;
+        }
+
+        .couple-photo {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-bottom: 2rem;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            border: 8px solid rgba(255,255,255,0.3);
+        }
+
+        .cover-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .couple-photo:hover .cover-image {
+            transform: scale(1.1);
+        }
+
+        .couple-names {
+            font-family: 'Dancing Script', cursive;
+            font-size: 4rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 1rem;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .name {
+            animation: nameGlow 2s ease-in-out infinite alternate;
+        }
+
+        .akash {
+            animation-delay: 0s;
+        }
+
+        .kanmani {
+            animation-delay: 0.5s;
+        }
+
+        .heart-emoji {
+            font-size: 3rem;
+            animation: heartPulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes nameGlow {
+            0% { text-shadow: 3px 3px 6px rgba(0,0,0,0.3); }
+            100% { text-shadow: 3px 3px 20px rgba(255,255,255,0.8); }
+        }
+
+        @keyframes heartPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        .love-subtitle {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        .cover-date {
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.8);
+            font-weight: 500;
+        }
+
+        /* Story Pages */
+        .story-page {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            max-width: 1200px;
+            width: 90%;
+            height: 80%;
+            background: rgba(255,255,255,0.95);
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.3);
+            backdrop-filter: blur(20px);
+        }
+
+        .photo-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .story-photo {
+            width: 100%;
+            max-width: 400px;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .story-photo:hover {
+            transform: scale(1.05);
+        }
+
+        .audio-section {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .memory-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .memory-caption {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 2rem;
+            text-align: center;
+            font-style: italic;
+        }
+
+        .audio-player {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            color: white;
+        }
+
+        .audio-title {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .play-button {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 1rem;
+        }
+
+        .play-button:hover {
+            background: rgba(255,255,255,0.3);
+            transform: scale(1.1);
+        }
+
+        .play-button.playing {
+            background: rgba(255,255,255,0.3);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(255, 255, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
+        }
+
+        .audio-duration {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .audio-progress {
+            width: 100%;
+            height: 4px;
+            background: rgba(255,255,255,0.3);
+            border-radius: 2px;
+            margin: 1rem 0;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: white;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        /* Navigation */
+        .album-navigation {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(20px);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .nav-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover:not(:disabled) {
+            background: rgba(255,255,255,0.3);
+            transform: scale(1.1);
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .page-indicator {
+            color: white;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        /* Audio Controls */
+        .audio-controls {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(20px);
+            padding: 1rem;
+            border-radius: 50px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .audio-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .audio-btn:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        /* Loading Screen */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.5s ease;
+        }
+
+        .loading-screen.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .loading-content {
+            text-align: center;
+            color: white;
+        }
+
+        .loading-hearts {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .loading-heart {
+            font-size: 2rem;
+            animation: bounce 1.5s ease-in-out infinite;
+        }
+
+        .loading-heart:nth-child(2) {
+            animation-delay: 0.3s;
+        }
+
+        .loading-heart:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .loading-text {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        /* Particles */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 50%;
+            animation: twinkle 3s ease-in-out infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0; transform: scale(0); }
+            50% { opacity: 1; transform: scale(1); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .surprise-title {
+                font-size: 2.5rem;
+            }
+            
+            .couple-names {
+                font-size: 2.5rem;
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .couple-photo {
+                width: 200px;
+                height: 200px;
+            }
+            
+            .story-page {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                padding: 2rem;
+                height: 90%;
+            }
+            
+            .story-photo {
+                max-width: 300px;
+                height: 200px;
+            }
+            
+            .memory-title {
+                font-size: 1.5rem;
+            }
+            
+            .album-navigation {
+                bottom: 1rem;
+                padding: 0.5rem 1rem;
+                gap: 1rem;
+            }
+            
+            .nav-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+            
+            .audio-controls {
+                top: 1rem;
+                right: 1rem;
+                padding: 0.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .story-page {
+                padding: 1rem;
+                width: 95%;
+            }
+            
+            .audio-section {
+                padding: 1rem;
+            }
+            
+            .memory-title {
+                font-size: 1.3rem;
+            }
+            
+            .memory-caption {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Surprise Screen -->
+    <div id="surpriseScreen" class="surprise-screen">
+        <div class="surprise-content">
+            <div class="heart-animation">
+                <div class="heart"></div>
+                <div class="heart"></div>
+                <div class="heart"></div>
+            </div>
+            <h1 class="surprise-title">A Special Surprise</h1>
+            <p class="surprise-message">Something beautiful awaits you...</p>
+            <button id="openSurprise" class="surprise-btn">
+                <span>Open Surprise</span>
+            </button>
+        </div>
+        <div class="floating-hearts">
+            <div class="floating-heart">💚</div>
+            <div class="floating-heart">💖</div>
+            <div class="floating-heart">💚</div>
+            <div class="floating-heart">💖</div>
+            <div class="floating-heart">💚</div>
+        </div>
+    </div>
+
+    <!-- Main Album -->
+    <div id="mainAlbum" class="main-album">
+        <!-- Cover Page -->
+        <div id="coverPage" class="album-page cover-page active">
+            <div class="cover-content">
+                <div class="couple-photo">
+                    <img src="photos/IMG20220604164926.jpg" alt="Akash & Kanmani" class="cover-image">
+                </div>
+                <div class="cover-text">
+                    <h1 class="couple-names">
+                        <span class="name akash">Akash</span>
+                        <span class="heart-emoji">💚</span>
+                        <span class="name kanmani">Kanmani</span>
+                    </h1>
+                    <p class="love-subtitle">Our Beautiful Love Story</p>
+                    <div class="cover-date">Est. 2023</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Story Pages will be dynamically generated -->
+        <div id="storyPages"></div>
+
+        <!-- Navigation -->
+        <div class="album-navigation">
+            <button id="prevBtn" class="nav-btn" disabled>❮</button>
+            <div class="page-indicator">
+                <span id="currentPage">1</span> / <span id="totalPages">51</span>
+            </div>
+            <button id="nextBtn" class="nav-btn">❯</button>
+        </div>
+
+        <!-- Audio Controls -->
+        <div class="audio-controls">
+            <button id="muteBtn" class="audio-btn">🔊</button>
+        </div>
+    </div>
+
+    <!-- Loading Screen -->
+    <div id="loadingScreen" class="loading-screen">
+        <div class="loading-content">
+            <div class="loading-hearts">
+                <div class="loading-heart">💚</div>
+                <div class="loading-heart">💖</div>
+                <div class="loading-heart">💚</div>
+            </div>
+            <p class="loading-text">Preparing your love story...</p>
+        </div>
+    </div>
+
+    <!-- Hidden Audio Elements -->
+    <div id="audioContainer" style="display: none;"></div>
+
+    <script>
+        // Wedding Album JavaScript
+        class WeddingAlbum {
+            constructor() {
+                this.currentPage = 0;
+                this.totalPages = 51; // Cover + 50 story pages
+                this.isMuted = false;
+                this.currentAudio = null;
+                this.autoAdvanceTimer = null;
+                this.stories = [];
+                
+                this.init();
+                this.generateStoryPages();
+                this.bindEvents();
+            }
+
+            init() {
+                // Initialize elements
+                this.surpriseScreen = document.getElementById('surpriseScreen');
+                this.mainAlbum = document.getElementById('mainAlbum');
+                this.loadingScreen = document.getElementById('loadingScreen');
+                this.storyPages = document.getElementById('storyPages');
+                this.audioContainer = document.getElementById('audioContainer');
+                
+                // Navigation elements
+                this.prevBtn = document.getElementById('prevBtn');
+                this.nextBtn = document.getElementById('nextBtn');
+                this.currentPageSpan = document.getElementById('currentPage');
+                this.totalPagesSpan = document.getElementById('totalPages');
+                
+                // Audio controls
+                this.muteBtn = document.getElementById('muteBtn');
+                
+                // Set total pages
+                this.totalPagesSpan.textContent = this.totalPages;
+            }
+
+            generateStoryPages() {
+                this.stories = this.generateSampleStories();
+                
+                this.stories.forEach((story, index) => {
+                    const pageElement = this.createStoryPage(story, index + 1);
+                    this.storyPages.appendChild(pageElement);
+                    
+                    // Create audio element
+                    const audioElement = document.createElement('audio');
+                    audioElement.id = `audio-${story.id}`;
+                    audioElement.preload = 'metadata';
+                    
+                    // For demo, we'll use a placeholder audio or create a synthetic one
+                    // In real implementation, you would use actual audio files
+                    audioElement.src = this.createSyntheticAudio(story.narrator, story.caption);
+                    
+                    audioElement.addEventListener('ended', () => {
+                        this.onAudioEnded();
+                    });
+                    
+                    audioElement.addEventListener('loadedmetadata', () => {
+                        // Set a default duration if audio doesn't load
+                        if (!audioElement.duration || audioElement.duration === Infinity) {
+                            audioElement.duration = 8; // 8 seconds default
+                        }
+                    });
+                    
+                    this.audioContainer.appendChild(audioElement);
+                });
+            }
+
+            generateSampleStories() {
+                const stories = [];
+                const sampleImages = [
+                    'https://images.pexels.com/photos/1024993/pexels-photo-1024993.jpeg?auto=compress&cs=tinysrgb&w=800',
+                    'https://images.pexels.com/photos/1043474/pexels-photo-1043474.jpeg?auto=compress&cs=tinysrgb&w=800',
+                    'https://images.pexels.com/photos/1024994/pexels-photo-1024994.jpeg?auto=compress&cs=tinysrgb&w=800',
+                    'https://images.pexels.com/photos/1043473/pexels-photo-1043473.jpeg?auto=compress&cs=tinysrgb&w=800',
+                    'https://images.pexels.com/photos/1024995/pexels-photo-1024995.jpeg?auto=compress&cs=tinysrgb&w=800',
+                    'https://images.pexels.com/photos/1024996/pexels-photo-1024996.jpeg?auto=compress&cs=tinysrgb&w=800',
+                    'https://images.pexels.com/photos/1043475/pexels-photo-1043475.jpeg?auto=compress&cs=tinysrgb&w=800',
+                    'https://images.pexels.com/photos/1024997/pexels-photo-1024997.jpeg?auto=compress&cs=tinysrgb&w=800'
+                ];
+
+                const sampleTitles = [
+                    'Our First Meeting', 'The Coffee Date', 'First Adventure Together', 'The Proposal',
+                    'Engagement Celebration', 'Wedding Planning', 'The Big Day', 'Honeymoon Bliss',
+                    'New Home', 'First Anniversary', 'Weekend Getaway', 'Family Dinner',
+                    'Beach Vacation', 'Mountain Trip', 'City Exploration', 'Cooking Together',
+                    'Movie Night', 'Dancing Lessons', 'Garden Picnic', 'Sunrise Walk'
+                ];
+
+                const sampleCaptions = [
+                    'The moment our eyes met, I knew my life would never be the same. Your smile lit up the entire room.',
+                    'Our first coffee date turned into hours of conversation. Time seemed to stop when I was with you.',
+                    'Every adventure with you feels like a fairy tale. You make ordinary moments extraordinary.',
+                    'When you said yes, my heart felt like it would burst with joy. This was our beginning.',
+                    'Surrounded by love and laughter, we celebrated our engagement with family and friends.',
+                    'Planning our wedding together showed me how perfectly we complement each other.',
+                    'The most beautiful day of our lives. I married my best friend and soulmate.',
+                    'Our honeymoon was pure magic. Just you, me, and endless love.',
+                    'Building our first home together, creating memories in every corner.',
+                    'One year of marriage, a lifetime of love ahead. Happy anniversary, my darling.'
+                ];
+
+                for (let i = 0; i < 50; i++) {
+                    stories.push({
+                        id: i + 1,
+                        title: sampleTitles[i % sampleTitles.length] + (i >= sampleTitles.length ? ` ${Math.floor(i / sampleTitles.length) + 1}` : ''),
+                        image: sampleImages[i % sampleImages.length],
+                        caption: sampleCaptions[i % sampleCaptions.length],
+                        narrator: i % 2 === 0 ? 'Kanmani' : 'Akash'
+                    });
+                }
+
+                return stories;
+            }
+
+            createStoryPage(story, pageNumber) {
+                const pageDiv = document.createElement('div');
+                pageDiv.className = 'album-page story-page';
+                pageDiv.id = `page-${pageNumber}`;
+                
+                pageDiv.innerHTML = `
+                    <div class="photo-section">
+                        <img src="${story.image}" alt="${story.title}" class="story-photo" loading="lazy">
+                    </div>
+                    <div class="audio-section">
+                        <h2 class="memory-title">${story.title}</h2>
+                        <p class="memory-caption">${story.caption}</p>
+                        <div class="audio-player">
+                            <div class="audio-title">Narrated by ${story.narrator}</div>
+                            <button class="play-button" id="playBtn-${story.id}">
+                                <span>▶</span>
+                            </button>
+                            <div class="audio-progress">
+                                <div class="progress-fill" id="progress-${story.id}"></div>
+                            </div>
+                            <div class="audio-duration" id="duration-${story.id}">Click to play memory</div>
+                        </div>
+                    </div>
+                `;
+
+                return pageDiv;
+            }
+
+            createSyntheticAudio(narrator, text) {
+                // For demo purposes, we'll return a data URL for a short beep
+                // In real implementation, you would use actual audio files
+                return 'audio/3.mp3';
+            }
+
+            bindEvents() {
+                // Surprise screen
+                document.getElementById('openSurprise').addEventListener('click', () => {
+                    this.showLoading();
+                    setTimeout(() => {
+                        this.startAlbum();
+                    }, 2000);
+                });
+
+                // Navigation
+                this.prevBtn.addEventListener('click', () => this.previousPage());
+                this.nextBtn.addEventListener('click', () => this.nextPage());
+
+                // Audio controls
+                this.muteBtn.addEventListener('click', () => this.toggleMute());
+
+                // Keyboard navigation
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'ArrowLeft') this.previousPage();
+                    if (e.key === 'ArrowRight') this.nextPage();
+                    if (e.key === ' ') {
+                        e.preventDefault();
+                        this.toggleCurrentAudio();
+                    }
+                });
+
+                // Touch/swipe support
+                this.addTouchSupport();
+            }
+
+            addTouchSupport() {
+                let startX = 0;
+                let startY = 0;
+
+                document.addEventListener('touchstart', (e) => {
+                    startX = e.touches[0].clientX;
+                    startY = e.touches[0].clientY;
+                });
+
+                document.addEventListener('touchend', (e) => {
+                    if (!startX || !startY) return;
+
+                    const endX = e.changedTouches[0].clientX;
+                    const endY = e.changedTouches[0].clientY;
+
+                    const diffX = startX - endX;
+                    const diffY = startY - endY;
+
+                    if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 50) {
+                        if (diffX > 0) {
+                            this.nextPage();
+                        } else {
+                            this.previousPage();
+                        }
+                    }
+
+                    startX = 0;
+                    startY = 0;
+                });
+            }
+
+            showLoading() {
+                this.loadingScreen.classList.add('active');
+            }
+
+            hideLoading() {
+                this.loadingScreen.classList.remove('active');
+            }
+
+            startAlbum() {
+                this.hideLoading();
+                this.surpriseScreen.classList.add('hidden');
+                this.mainAlbum.classList.add('active');
+                
+                // Show cover page for 5 seconds, then auto-advance
+                setTimeout(() => {
+                    if (this.currentPage === 0) {
+                        this.nextPage();
+                    }
+                }, 5000);
+
+                // Create particles
+                this.createParticles();
+            }
+
+            showPage(pageIndex) {
+                // Hide all pages
+                const allPages = document.querySelectorAll('.album-page');
+                allPages.forEach(page => {
+                    page.classList.remove('active');
+                });
+
+                // Stop current audio
+                this.stopCurrentAudio();
+
+                // Show current page
+                if (pageIndex === 0) {
+                    document.getElementById('coverPage').classList.add('active');
+                } else {
+                    document.getElementById(`page-${pageIndex}`).classList.add('active');
+                    
+                    // Auto-play audio for story pages
+                    setTimeout(() => {
+                        this.playStoryAudio(pageIndex);
+                    }, 800); // Delay to allow page transition
+                }
+
+                // Update navigation
+                this.currentPage = pageIndex;
+                this.currentPageSpan.textContent = pageIndex + 1;
+                
+                this.prevBtn.disabled = pageIndex === 0;
+                this.nextBtn.disabled = pageIndex === this.totalPages - 1;
+            }
+
+            nextPage() {
+                if (this.currentPage < this.totalPages - 1) {
+                    this.showPage(this.currentPage + 1);
+                }
+            }
+
+            previousPage() {
+                if (this.currentPage > 0) {
+                    this.showPage(this.currentPage - 1);
+                }
+            }
+
+            playStoryAudio(pageIndex) {
+                if (pageIndex === 0) return; // No audio for cover page
+
+                const storyId = pageIndex;
+                const audioElement = document.getElementById(`audio-${storyId}`);
+                const playButton = document.getElementById(`playBtn-${storyId}`);
+                const progressBar = document.getElementById(`progress-${storyId}`);
+                const durationDisplay = document.getElementById(`duration-${storyId}`);
+
+                if (!audioElement || this.isMuted) return;
+
+                this.currentAudio = audioElement;
+                
+                // Update UI
+                playButton.innerHTML = '⏸';
+                playButton.classList.add('playing');
+                durationDisplay.textContent = 'Playing...';
+
+                // For demo purposes, simulate audio playback with a timer
+                let duration = 8; // 8 seconds
+                let currentTime = 0;
+                
+                const updateProgress = () => {
+                    if (currentTime >= duration) {
+                        this.onAudioEnded();
+                        return;
+                    }
+                    
+                    currentTime += 0.1;
+                    const progress = (currentTime / duration) * 100;
+                    progressBar.style.width = `${progress}%`;
+                    
+                    const remainingTime = Math.ceil(duration - currentTime);
+                    durationDisplay.textContent = `${remainingTime}s remaining`;
+                };
+
+                // Start progress simulation
+                this.audioProgressInterval = setInterval(updateProgress, 100);
+
+                // Try to play actual audio (will be silent for demo)
+                audioElement.play().catch(() => {
+                    // Audio play failed, continue with simulation
+                });
+            }
+
+            stopCurrentAudio() {
+                if (this.currentAudio) {
+                    this.currentAudio.pause();
+                    this.currentAudio.currentTime = 0;
+                    this.currentAudio = null;
+                }
+
+                if (this.audioProgressInterval) {
+                    clearInterval(this.audioProgressInterval);
+                    this.audioProgressInterval = null;
+                }
+
+                // Reset all play buttons
+                const playButtons = document.querySelectorAll('.play-button');
+                playButtons.forEach(btn => {
+                    btn.innerHTML = '▶';
+                    btn.classList.remove('playing');
+                });
+
+                // Reset all progress bars
+                const progressBars = document.querySelectorAll('.progress-fill');
+                progressBars.forEach(bar => {
+                    bar.style.width = '0%';
+                });
+            }
+
+            onAudioEnded() {
+                this.stopCurrentAudio();
+                
+                // Auto-advance to next page
+                setTimeout(() => {
+                    this.nextPage();
+                }, 1000);
+            }
+
+            toggleCurrentAudio() {
+                if (this.currentPage === 0) return;
+                
+                if (this.currentAudio && !this.currentAudio.paused) {
+                    this.stopCurrentAudio();
+                } else {
+                    this.playStoryAudio(this.currentPage);
+                }
+            }
+
+            toggleMute() {
+                this.isMuted = !this.isMuted;
+                this.muteBtn.textContent = this.isMuted ? '🔇' : '🔊';
+                
+                if (this.isMuted) {
+                    this.stopCurrentAudio();
+                }
+            }
+
+            createParticles() {
+                const particles = document.createElement('div');
+                particles.className = 'particles';
+
+                for (let i = 0; i < 20; i++) {
+                    const particle = document.createElement('div');
+                    particle.className = 'particle';
+                    particle.style.top = `${Math.random() * 100}%`;
+                    particle.style.left = `${Math.random() * 100}%`;
+                    particle.style.animationDelay = `${Math.random() * 2}s`;
+                    particles.appendChild(particle);
+                }
+
+                document.body.appendChild(particles);
+            }
+        }
+
+        // Initialize the album when the page loads
+        let album;
+        document.addEventListener('DOMContentLoaded', () => {
+            album = new WeddingAlbum();
+        });
+    </script>
+</body>
+</html>
